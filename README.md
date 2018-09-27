@@ -20,7 +20,7 @@ PCのブラウザからLINEにログインして、各トークグループに�
 
 #### Backlog API
 Backlogのページ内からAPI Keyを発行する。
-/api/v2/issures で[課題一覧の取得]を実行する
+/api/v2/issures で[課題一覧の取得]を実行する。  
 https://developer.nulab-inc.com/ja/docs/backlog/api/2/get-issue-list/
 
 #### Google Apps Script
@@ -31,4 +31,7 @@ Googleアカウント上で走らせる。
 また検証用に任意でLINE Notifyにメッセージを投げられるようにしたい。
 
 #### 注意点
-LINE NotifyアクセストークンおよびBacklog API KeyはGitHub上に置かないこと。
+LINE NotifyアクセストークンおよびBacklog API KeyはGitHub上に置かないこと。  
+ここら辺を参考に(.env に外だしして.gitignore)  
+[API key等をgithubで公開しない方法(rails,heroku)](https://qiita.com/uma0317/items/e142661c004f68d858a5)  
+[Nodeプロジェクトで環境依存の設定の管理方法](https://qiita.com/ueokande/items/80048f886082fea5b776)  
