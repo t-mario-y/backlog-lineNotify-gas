@@ -30,3 +30,10 @@ function triggerBuildSample(){
     .atHour(12).nearMinute(0)
     .create();
 }
+
+/**
+ * LINE Notifyに雑に飛ばす検証用処理
+ */
+function notifyTestMessage(){
+  sendLineNotify('このようにGoogle Apps ScriptからLINE Notifyにメッセージを送信可能です。');
+}
