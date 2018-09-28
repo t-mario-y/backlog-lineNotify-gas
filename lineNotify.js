@@ -1,5 +1,3 @@
-var LINE_NOTIFY_ACCESS_TOKEN = '';
-
 function sendHttpPost(message){
   var options =
    {

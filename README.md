@@ -30,8 +30,10 @@ Googleアカウント上で走らせる。
 ただしソースコードをGitHub上で管理するにはひと工夫必要。(google/claspを使用)
 また検証用に任意でLINE Notifyにメッセージを投げられるようにしたい。
 
-#### 注意点
-LINE NotifyアクセストークンおよびBacklog API KeyはGitHub上に置かないこと。  
-ここら辺を参考に(.env に外だしして.gitignore)  
+### 注意点
+LINE NotifyアクセストークンおよびBacklog API KeyはGitHub上で公開しない。  
+env.jsに定義したうえで.gitignoreにenv.jsを追加する。
+
+#### 参考サイト
 [API key等をgithubで公開しない方法(rails,heroku)](https://qiita.com/uma0317/items/e142661c004f68d858a5)  
 [Nodeプロジェクトで環境依存の設定の管理方法](https://qiita.com/ueokande/items/80048f886082fea5b776)  

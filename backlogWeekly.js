@@ -1,4 +1,3 @@
-var BACKLOG_API_KEY = '';
 var STATUS_NOT_YET = 1;
 var STATUS_PROGRESS = 2;
 var STATUS_DONE = 3;
