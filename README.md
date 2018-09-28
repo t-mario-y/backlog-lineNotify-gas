@@ -24,7 +24,7 @@ Backlogのページ内からAPI Keyを発行する。
 https://developer.nulab-inc.com/ja/docs/backlog/api/2/get-issue-list/
 
 #### Google Apps Script
-Googleアカウント上で走らせる。  
+バンドのGoogleアカウント上で走らせる。  
 初段は単に週次実行としているが、Googleカレンダーとの連携が容易なため機能拡張も考慮。
 
 ただしソースコードをGitHub上で管理するにはひと工夫必要。(google/claspを使用)

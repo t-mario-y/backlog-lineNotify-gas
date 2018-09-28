@@ -10,7 +10,7 @@ var testJsonFile = DriveApp.getFileById('16FLJjGigf1f49fHRl4585mjSdTaD-H3H');
 /**
  * 未着手のタスク一覧情報メッセージを作成
  */
- function createNotYetTasksInfoMessage() {
+function createNotYetTasksInfoMessage() {
   var taskArr = fetchTaskArr(STATUS_NOT_YET);
   var postString = '未着手のタスク' + LF;
   taskArr.forEach(function(elem){
@@ -22,7 +22,7 @@ var testJsonFile = DriveApp.getFileById('16FLJjGigf1f49fHRl4585mjSdTaD-H3H');
 /**
  * 処理中のタスク一覧情報メッセージを作成
  */
- function createProgressTasksInfoMessage() {
+function createProgressTasksInfoMessage() {
   var taskArr = fetchTaskArr(STATUS_PROGRESS);
   var postString = '処理中のタスク' + LF;
   taskArr.forEach(function(elem){
@@ -34,7 +34,7 @@ var testJsonFile = DriveApp.getFileById('16FLJjGigf1f49fHRl4585mjSdTaD-H3H');
 /**
  * 処理済みのタスク一覧情報メッセージを作成
 */
- function createDoneTasksInfoMessage() {
+function createDoneTasksInfoMessage() {
   var taskArr = fetchTaskArr(STATUS_DONE);
   var postString = '処理済みのタスク' + LF;
   taskArr.forEach(function(elem){
@@ -58,6 +58,9 @@ function fetchTaskArr(statusId){
     '?apiKey=' + BACKLOG_API_KEY +
     '&count=100' +
     '&statusId[]=' + statusId;
+  //GAS ProjectのサーバログにURLを出力(デバッグ用)
+  console.log(taskFetchurl);
+
   //実データ
   return JSON.parse(UrlFetchApp.fetch(taskFetchurl).getContentText('UTF-8'));
   //テスト用

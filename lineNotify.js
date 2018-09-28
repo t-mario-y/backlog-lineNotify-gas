@@ -19,3 +19,14 @@ function notifyBacklogTasksInfo(){
   sendLineNotify(createProgressTasksInfoMessage()); //処理中
   sendLineNotify(createDoneTasksInfoMessage()); //処理済み
 }
+
+/** 
+ * トリガーの設定(土曜日12:00頃)
+ * トリガーの設定自体はGAS Project上でこの関数を実行する必要がある。
+ */
+function triggerBuildSample(){
+  ScriptApp.newTrigger('notifyBacklogTasksInfo').timeBased()
+    .onWeekDay(ScriptApp.WeekDay.SATURDAY)
+    .atHour(12).nearMinute(0)
+    .create();
+}
