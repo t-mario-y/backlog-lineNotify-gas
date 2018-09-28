@@ -25,10 +25,9 @@ https://developer.nulab-inc.com/ja/docs/backlog/api/2/get-issue-list/
 
 #### Google Apps Script
 バンドのGoogleアカウント上で走らせる。  
-初段は単に週次実行としているが、Googleカレンダーとの連携が容易なため機能拡張も考慮。
-
-ただしソースコードをGitHub上で管理するにはひと工夫必要。(google/claspを使用)
-また検証用に任意でLINE Notifyにメッセージを投げられるようにしたい。
+初段は単に週次実行としているが、Googleカレンダーとの連携が容易なため機能拡張も考慮。  
+ただしソースコードをGitHub上で管理するにはひと工夫必要。(google/claspを使用)  
+LINE Notify検証用にnotifyTestMessage()を追加しました。GAS Project上で実行してみてください。
 
 ### 注意点
 LINE NotifyアクセストークンおよびBacklog API KeyはGitHub上で公開しない。  
