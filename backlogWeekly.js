@@ -8,37 +8,39 @@ var LF = '\r\n'; //LINEメッセージ上の改行コード
 var testJsonFile = DriveApp.getFileById('16FLJjGigf1f49fHRl4585mjSdTaD-H3H');
 
 /**
- * タスク一覧を取得し、状態で分類した文字列をLogに出力する
+ * 未着手のタスク一覧情報メッセージを作成
  */
-//TODO:並び順が登録の逆順(新タスク→旧タスク)
-//TODO:filter→forEach4回はかっこ悪い
-function fetchBacklogTasks() {
-  var postString = '';
-  var taskFetchurl = 'https://harmonyfct.backlog.jp/api/v2/issues?apiKey=' + BACKLOG_API_KEY;
-  //本番用
-  var dataArr = JSON.parse(UrlFetchApp.fetch(taskFetchurl).getContentText('UTF-8'));
-  //テスト用
-  //var dataArr = JSON.parse(testJsonFile.getBlob().getDataAsString('UTF-8'));
+ function createNotYetTasksInfoMessage() {
+  var taskArr = fetchTaskArr(STATUS_NOT_YET);
+  var postString = '未着手のタスク' + LF;
+  taskArr.forEach(function(elem){
+    postString += createTaskTemplateString(elem); 
+  });
 
-  postString += '処理済みのタスク' + LF;
-  dataArr.filter(function(elem){ return elem.status.id === STATUS_DONE; })
-    .forEach(function(elem){
-      postString += createTaskTemplateString(elem); 
-    });
+  return postString;
+}
+/**
+ * 処理中のタスク一覧情報メッセージを作成
+ */
+ function createProgressTasksInfoMessage() {
+  var taskArr = fetchTaskArr(STATUS_PROGRESS);
+  var postString = '処理中のタスク' + LF;
+  taskArr.forEach(function(elem){
+    postString += createTaskTemplateString(elem); 
+  });
 
-  postString += '処理中のタスク' + LF;
-  dataArr.filter(function(elem){ return elem.status.id === STATUS_PROGRESS;  })
-    .forEach(function(elem){
-      postString += createTaskTemplateString(elem); 
-    });
+  return postString;
+}
+/**
+ * 処理済みのタスク一覧情報メッセージを作成
+*/
+ function createDoneTasksInfoMessage() {
+  var taskArr = fetchTaskArr(STATUS_DONE);
+  var postString = '処理済みのタスク' + LF;
+  taskArr.forEach(function(elem){
+    postString += createTaskTemplateString(elem); 
+  });
 
-  postString += '未着手のタスク' + LF;
-  dataArr.filter(function(elem){ return elem.status.id === STATUS_NOT_YET;})
-    .forEach(function(elem){
-      postString += createTaskTemplateString(elem); 
-    });
-
-  Logger.log(postString);
   return postString;
 }
 /**
@@ -46,4 +48,18 @@ function fetchBacklogTasks() {
  */
 function createTaskTemplateString(taskObj){
   return taskObj.summary + '/担当:' + taskObj.assignee.name + LF
+}
+/**
+ * Backlog APIの取得結果をJSON形式で返す
+ * WILL statusID以外にも動的にパラメータを指定可能に
+ */
+function fetchTaskArr(statusId){
+  var taskFetchurl = 'https://harmonyfct.backlog.jp/api/v2/issues' + 
+    '?apiKey=' + BACKLOG_API_KEY +
+    '&count=100' +
+    '&statusId[]=' + statusId;
+  //実データ
+  return JSON.parse(UrlFetchApp.fetch(taskFetchurl).getContentText('UTF-8'));
+  //テスト用
+  //return JSON.parse(testJsonFile.getBlob().getDataAsString('UTF-8'));
 }
