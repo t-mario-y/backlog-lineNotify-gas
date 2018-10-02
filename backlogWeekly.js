@@ -4,9 +4,6 @@ var STATUS_DONE = 3;
 var STATUS_FINISHED = 4;
 var LF = '\r\n'; //LINEメッセージ上の改行コード
 
-//検証時のJSONファイル(BacklogAPIを何回も呼び出しすぎないように)
-var testJsonFile = DriveApp.getFileById('16FLJjGigf1f49fHRl4585mjSdTaD-H3H');
-
 /**
  * 未着手のタスク一覧情報メッセージを作成
  */
@@ -63,6 +60,6 @@ function fetchTaskArr(statusId){
 
   //実データ
   return JSON.parse(UrlFetchApp.fetch(taskFetchurl).getContentText('UTF-8'));
-  //テスト用
-  //return JSON.parse(testJsonFile.getBlob().getDataAsString('UTF-8'));
+  //テスト用(JSオブジェクトなのでJSON.parse不要)
+  //return testData;
 }
